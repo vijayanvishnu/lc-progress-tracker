@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leetcode Progress Tracker</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .app-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .app-desc {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .upload-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .upload-btn {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .upload-btn:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    #dataTable_wrapper {
+      width: 100%;
+    }
+    /* Loading spinner */
+    .loading-spinner {
+      display: none;
+      text-align: center;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+</head>
+<body>
+<div class="app-name home-page">Leetcode Progress Tracker</div>
+<div class="app-desc home-page">A simple application to keep track of Leetcode profiles of users in an organization.</div>
+
+<div class="upload-container home-page">
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" id="fileInput" name="file" accept=".xlsx" required>
+    <p></p>
+    <input type="submit" class="upload-btn" value="Upload File"/>
+  </form>
+  <div style="text-align: center;" class="home-page">
+    <div>Your file must be in the extension of <b>.xlsx</b> not any other formats are supported.</div>
+    <div>Given file should contain only one column and it must be named as <b>username</b>.</div>
+  </div>
+</div>
+
+<div id="loadingSpinner" class="loading-spinner loading">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="200" height="200">
+    <g>
+      <circle fill="#ff0000" r="10" cy="50" cx="84">
+        <animate begin="0s" keySplines="0 0.5 0.5 1" values="8;0" keyTimes="0;1" calcMode="spline" dur="2.0833333333333335s" repeatCount="indefinite" attributeName="r"></animate>
+        <animate begin="0s" values="#ff0000;#fff52d;#0084ff;#61ff00;#ff0000" keyTimes="0;0.25;0.5;0.75;1" calcMode="discrete" dur="8.333333333333334s" repeatCount="indefinite" attributeName="fill"></animate>
+      </circle>
+      <circle fill="#ff0000" r="10" cy="50" cx="16">
+        <animate begin="0s" keySplines="0 0.5 0.5 1" values="0;0;8;8;8" keyTimes="0;0.25;0.5;0.75;1" calcMode="spline" dur="8.333333333333334s" repeatCount="indefinite" attributeName="r"></animate>
+      </circle>
+    </g>
+  </svg>
+</div>
+
+<table id="dataTable" style="display:none;">
+  <thead>
+  <tr>
+    <th>S.No</th>
+    <th>Username</th>
+    <th>Easy</th>
+    <th>Medium</th>
+    <th>Hard</th>
+    <th>Total</th>
+    <th>Request Status</th>
+  </tr>
+  </thead>
+  <tbody id="dataTableBody"></tbody>
+</table>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+<script src="app.js"></script>
+</body>
+</html>
